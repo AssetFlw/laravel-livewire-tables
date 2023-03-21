@@ -2,10 +2,9 @@
 
 namespace Rappasoft\LaravelLivewireTables\Traits;
 
+use Rappasoft\LaravelLivewireTables\Events\ColumnsSelected;
 use Rappasoft\LaravelLivewireTables\Traits\Configuration\ColumnSelectConfiguration;
 use Rappasoft\LaravelLivewireTables\Traits\Helpers\ColumnSelectHelpers;
-use Rappasoft\LaravelLivewireTables\Events\ColumnsSelected;
-use Illuminate\Support\Facades\Event;
 
 trait WithColumnSelect
 {
@@ -15,6 +14,8 @@ trait WithColumnSelect
     public array $selectedColumns = [];
     protected bool $columnSelectStatus = true;
     protected bool $rememberColumnSelectionStatus = true;
+    protected bool $columnSelectHiddenOnMobile = false;
+    protected bool $columnSelectHiddenOnTablet = false;
 
     public function setupColumnSelect(): void
     {
