@@ -139,6 +139,7 @@ abstract class DataTableComponent extends Component
                 'columns' => $this->getColumns(),
                 'rows' => $this->getRows(),
                 'customView' => $this->customView(),
+                'filters' => $this->filters(),
             ]);
     }
 }
