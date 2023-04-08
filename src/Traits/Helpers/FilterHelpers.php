@@ -102,7 +102,6 @@ trait FilterHelpers
     public function setFilter(string $filterKey, $value)
     {
         $filters = $this->{$this->getTableName()}['filters'][$filterKey] = $value;
-        event(new FilterSet($this->getTableName(), $filters));
         return $filters;
     }
 
