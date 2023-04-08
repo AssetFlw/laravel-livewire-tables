@@ -9,12 +9,14 @@ class FilterSet
 {
     use Dispatchable, SerializesModels;
 
-    public $filters;
     public $key;
+    public $filter;
+    public $value;
 
-    public function __construct($key, $filters)
+    public function __construct($key, $filter, $value)
     {
         $this->key = $key;
-        $this->filters = $filters;
+        $this->filter = $filter;
+        $this->value = $value;
     }
 }
