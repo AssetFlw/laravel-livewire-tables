@@ -6,6 +6,7 @@ use Illuminate\Support\Collection;
 use Rappasoft\LaravelLivewireTables\Views\Filter;
 use Rappasoft\LaravelLivewireTables\Views\Filters\MultiSelectDropdownFilter;
 use Rappasoft\LaravelLivewireTables\Views\Filters\MultiSelectFilter;
+use Rappasoft\LaravelLivewireTables\Events\FilterSet;
 
 trait FilterHelpers
 {
