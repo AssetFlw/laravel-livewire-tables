@@ -194,8 +194,8 @@ trait FilterHelpers
         if (! $filter instanceof Filter) {
             $filter = $this->getFilterByKey($filter);
         }
-
         $this->setFilter($filter->getKey(), $filter->getDefaultValue());
+        event(new FilterSet($this->dataTableFingerprint(), $filter->getKey(), $filter->getDefaultValue()));
     }
 
     public function getFilterLayout(): string

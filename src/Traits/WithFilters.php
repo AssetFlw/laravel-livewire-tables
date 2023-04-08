@@ -5,6 +5,7 @@ namespace Rappasoft\LaravelLivewireTables\Traits;
 use Illuminate\Database\Eloquent\Builder;
 use Rappasoft\LaravelLivewireTables\Traits\Configuration\FilterConfiguration;
 use Rappasoft\LaravelLivewireTables\Traits\Helpers\FilterHelpers;
+use Rappasoft\LaravelLivewireTables\Events\FilterSet;
 
 trait WithFilters
 {
@@ -34,6 +35,8 @@ trait WithFilters
                         if ($value === false) {
                             continue;
                         }
+
+                        event(new FilterSet($this->dataTableFingerprint(), $filter->getKey(), $value));
 
                         ($filter->getFilterCallback())($this->getBuilder(), $value);
                     }
