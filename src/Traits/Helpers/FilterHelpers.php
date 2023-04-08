@@ -100,7 +100,9 @@ trait FilterHelpers
 
     public function setFilter(string $filterKey, $value)
     {
-        return $this->{$this->getTableName()}['filters'][$filterKey] = $value;
+        $filters = $this->{$this->getTableName()}['filters'][$filterKey] = $value;
+        event(new FilterSet($this->getTableName(), $filters));
+        return $filters;
     }
 
     public function selectAllFilterOptions(string $filterKey): void
