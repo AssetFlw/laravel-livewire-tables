@@ -40,9 +40,8 @@ trait WithFilters
                             continue;
                         }
 
-                        event(new FilterSet($this->dataTableFingerprint(), $filter->getKey(), $value));
+                        event(new FilterSet($this->dataTableFingerprint(), $filter->getKey(), $options));
 
-                        ($filter->getFilterCallback())($this->getBuilder(), $value);
                         ($filter->getFilterCallback())($this->getBuilder(), $options, $operator);
                     }
                 }
