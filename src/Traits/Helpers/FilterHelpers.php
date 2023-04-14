@@ -174,6 +174,7 @@ trait FilterHelpers
     public function getAppliedFiltersWithValues(): array
     {
         return array_filter($this->getAppliedFilters(), function ($item) {
+            $item = (is_array($item)?(array_key_exists('options', $item)?$item['options']:$item):$item);
             return is_array($item) ? count($item) : $item !== null;
         });
     }

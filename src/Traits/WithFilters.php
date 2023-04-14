@@ -29,8 +29,12 @@ trait WithFilters
             foreach ($this->getFilters() as $filter) {
                 foreach ($this->getAppliedFiltersWithValues() as $key => $value) {
                     if ($filter->getKey() === $key && $filter->hasFilterCallback()) {
+                        
                         // Let the filter class validate the value
-                        $value = $filter->validate($value);
+                        $operator = (array_key_exists('operator', $value)?$value['operator']:'or');
+                        $options = (array_key_exists('options', $value)?$value['options']:$value);
+                        $options = $filter->validate($options);
+                        
 
                         if ($value === false) {
                             continue;
@@ -39,6 +43,7 @@ trait WithFilters
                         event(new FilterSet($this->dataTableFingerprint(), $filter->getKey(), $value));
 
                         ($filter->getFilterCallback())($this->getBuilder(), $value);
+                        ($filter->getFilterCallback())($this->getBuilder(), $options, $operator);
                     }
                 }
             }
