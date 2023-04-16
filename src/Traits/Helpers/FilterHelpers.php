@@ -175,7 +175,7 @@ trait FilterHelpers
     {
         return array_filter($this->getAppliedFilters(), function ($item) {
             $item = (is_array($item)?(array_key_exists('options', $item)?$item['options']:$item):$item);
-            unset($item['operator']);
+            if($item != null){ unset($item['operator']); };
             return is_array($item) ? count($item) : $item !== null;
         });
     }
