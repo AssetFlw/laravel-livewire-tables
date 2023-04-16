@@ -31,8 +31,8 @@ trait WithFilters
                     if ($filter->getKey() === $key && $filter->hasFilterCallback()) {
                         
                         // Let the filter class validate the value
-                        $operator = (array_key_exists('operator', $value)?$value['operator']:'or');
-                        $options = (array_key_exists('options', $value)?$value['options']:$value);
+                        $operator = (is_Array($value)?(array_key_exists('operator', $value)?$value['operator']:'or'):'or');
+                        $options = (is_Array($value)?(array_key_exists('options', $value)?$value['options']:$value):$value);
                         $options = $filter->validate($options);
                         
 
