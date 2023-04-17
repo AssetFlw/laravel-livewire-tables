@@ -17,7 +17,10 @@ trait ComponentUtilities
     protected Builder $builder;
     protected $model;
     protected $primaryKey;
+    protected array $relationships = [];
     protected string $tableName = 'table';
+    protected ?string $dataTableFingerprint;
+    protected ?string $queryStringAlias;
     protected bool $queryStringStatus = true;
     protected bool $offlineIndicatorStatus = true;
     protected bool $eagerLoadAllRelationsStatus = false;
@@ -52,7 +55,7 @@ trait ComponentUtilities
     /**
      * Set the custom query string array for this specific table
      *
-     * @return array|\null[][]
+     * @return array<mixed>
      */
     public function queryString(): array
     {
