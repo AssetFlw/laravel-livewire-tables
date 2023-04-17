@@ -295,7 +295,7 @@ trait FilterHelpers
             $filter = $this->getFilterByKey($filter);
         }
         $this->setFilter($filter->getKey(), $filter->getDefaultValue());
-        event(new FilterSet($this->dataTableFingerprint(), $filter->getKey(), $filter->getDefaultValue()));
+        event(new FilterSet($this->getDataTableFingerprint(), $filter->getKey(), $filter->getDefaultValue()));
     }
 
     /**
