@@ -441,4 +441,12 @@ trait ComponentHelpers
     {
         return $this->getHideConfigurableAreasWhenReorderingStatus() === false;
     }
+
+    /**
+     * @return bool
+     */
+    public function cardLayoutIsEnabled(): bool
+    {
+        return $this->cardLayoutStatus === true;
+    }
 }

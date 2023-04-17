@@ -8,6 +8,7 @@ use Rappasoft\LaravelLivewireTables\Views\Filter;
 class MultiSelectDropdownFilter extends Filter
 {
     protected array $options = [];
+    protected string $operator = 'or';
     protected string $firstOption = "";
 
     public function options(array $options = []): MultiSelectDropdownFilter
@@ -65,12 +66,18 @@ class MultiSelectDropdownFilter extends Filter
      */
     public function getDefaultValue()
     {
-        return [];
+        return ['options' => [], 'operator' => $this->getFilterOperator()];
+    }
+
+    public function getFilterOperator(){
+        return $this->operator;
     }
 
     public function getFilterPillValue($value): ?string
     {
         $values = [];
+
+        $value = (array_key_exists('options', $value)?$value['options']:$value);
 
         foreach ($value as $item) {
             $found = $this->getCustomFilterPillValue($item)

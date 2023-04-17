@@ -128,6 +128,7 @@ abstract class DataTableComponent extends Component
      */
     public function render()
     {
+        $this->setColumns();
         $this->setupColumnSelect();
         $this->setupPagination();
         $this->setupSecondaryHeader();
