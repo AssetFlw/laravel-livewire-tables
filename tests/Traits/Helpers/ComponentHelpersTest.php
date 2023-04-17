@@ -252,5 +252,4 @@ class ComponentHelpersTest extends TestCase
 
         $this->assertFalse($this->basicTable->cardLayoutIsEnabled());
     }
-
 }

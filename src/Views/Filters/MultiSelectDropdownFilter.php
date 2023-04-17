@@ -69,7 +69,8 @@ class MultiSelectDropdownFilter extends Filter
         return ['options' => [], 'operator' => $this->getFilterOperator()];
     }
 
-    public function getFilterOperator(){
+    public function getFilterOperator()
+    {
         return $this->operator;
     }
 

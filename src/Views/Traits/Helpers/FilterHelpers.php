@@ -76,8 +76,6 @@ trait FilterHelpers
         return null;
     }
 
-    
-
     /**
      * Get the filter options.
      *

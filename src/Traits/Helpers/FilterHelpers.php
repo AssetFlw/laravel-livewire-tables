@@ -4,10 +4,10 @@ namespace Rappasoft\LaravelLivewireTables\Traits\Helpers;
 
 use Illuminate\Support\Arr;
 use Illuminate\Support\Collection;
+use Rappasoft\LaravelLivewireTables\Events\FilterSet;
 use Rappasoft\LaravelLivewireTables\Views\Filter;
 use Rappasoft\LaravelLivewireTables\Views\Filters\MultiSelectDropdownFilter;
 use Rappasoft\LaravelLivewireTables\Views\Filters\MultiSelectFilter;
-use Rappasoft\LaravelLivewireTables\Events\FilterSet;
 
 trait FilterHelpers
 {
@@ -162,6 +162,7 @@ trait FilterHelpers
     public function setFilter(string $filterKey, $value)
     {
         $filters = $this->{$this->getTableName()}['filters'][$filterKey] = $value;
+
         return $filters;
     }
 
@@ -261,7 +262,10 @@ trait FilterHelpers
     {
         return array_filter($this->getAppliedFilters(), function ($item) {
             $item = (is_array($item)?(array_key_exists('options', $item)?$item['options']:$item):$item);
-            if(is_array($item)){ unset($item['operator']); };
+            if(is_array($item)) {
+                unset($item['operator']);
+            };
+
             return is_array($item) ? count($item) : $item !== null;
         });
     }
