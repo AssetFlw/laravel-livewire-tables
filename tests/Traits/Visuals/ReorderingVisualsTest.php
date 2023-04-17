@@ -11,7 +11,7 @@ class ReorderingVisualsTest extends TestCase
     /** @test */
     public function testFilterArraySetup(): array
     {
-        $filterDefaultArray = ['breed' => [], 'species' => [], 'breed_id_filter' => null, 'pet_name_filter' => null, 'last_visit_date_filter' => null, 'last_visit_datetime_filter' => null, 'breed_select_filter' => null];
+        $filterDefaultArray = ['breed' => [], 'species' => ['options' => [], 'operator' => 'or'], 'breed_id_filter' => null, 'pet_name_filter' => null, 'last_visit_date_filter' => null, 'last_visit_datetime_filter' => null, 'breed_select_filter' => null];
         $this->assertNotEmpty($filterDefaultArray);
 
         return $filterDefaultArray;

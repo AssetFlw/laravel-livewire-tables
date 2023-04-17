@@ -149,7 +149,7 @@ class FilterHelpersTest extends TestCase
 
         $this->basicTable->setFilterDefaults();
 
-        $this->assertSame(['breed' => [], 'species' => [], 'breed_id_filter' => null, 'pet_name_filter' => null, 'last_visit_date_filter' => null, 'last_visit_datetime_filter' => null, 'breed_select_filter' => null], $this->basicTable->getAppliedFilters());
+        $this->assertSame(['breed' => [], 'species' => ['options' => [], 'operator' => 'or'], 'breed_id_filter' => null, 'pet_name_filter' => null, 'last_visit_date_filter' => null, 'last_visit_datetime_filter' => null, 'breed_select_filter' => null], $this->basicTable->getAppliedFilters());
     }
 
     /** @test */

@@ -60,7 +60,7 @@ class MultiSelectDropdownFilterTest extends TestCase
     {
         $filter = MultiSelectDropdownFilter::make('Active');
 
-        $this->assertSame([], $filter->getDefaultValue());
+        $this->assertSame(['options' => [], 'operator' => 'or'], $filter->getDefaultValue());
     }
 
     /** @test */
