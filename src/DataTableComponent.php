@@ -32,11 +32,11 @@ abstract class DataTableComponent extends Component
         WithEvents,
         WithFilters,
         WithFooter,
-        WithSecondaryHeader,
         WithPagination,
         WithRefresh,
         WithReordering,
         WithSearch,
+        WithSecondaryHeader,
         WithSorting;
 
     protected $listeners = [
@@ -134,6 +134,7 @@ abstract class DataTableComponent extends Component
      */
     public function render()
     {
+        $this->setColumns();
         $this->setupColumnSelect();
         $this->setupPagination();
         $this->setupSecondaryHeader();

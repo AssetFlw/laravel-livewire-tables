@@ -3,6 +3,7 @@
 namespace Rappasoft\LaravelLivewireTables\Traits;
 
 use Illuminate\Database\Eloquent\Builder;
+use Rappasoft\LaravelLivewireTables\Events\FilterSet;
 use Rappasoft\LaravelLivewireTables\Traits\Configuration\FilterConfiguration;
 use Rappasoft\LaravelLivewireTables\Traits\Helpers\FilterHelpers;
 
@@ -36,14 +37,19 @@ trait WithFilters
             foreach ($this->getFilters() as $filter) {
                 foreach ($this->getAppliedFiltersWithValues() as $key => $value) {
                     if ($filter->getKey() === $key && $filter->hasFilterCallback()) {
+
                         // Let the filter class validate the value
-                        $value = $filter->validate($value);
+                        $operator = (is_array($value) ? (array_key_exists('operator', $value) ? $value['operator'] : 'or') : 'or');
+                        $options = (is_array($value) ? (array_key_exists('options', $value) ? $value['options'] : $value) : $value);
+                        $options = $filter->validate($options);
 
                         if ($value === false) {
                             continue;
                         }
 
-                        ($filter->getFilterCallback())($this->getBuilder(), $value);
+                        event(new FilterSet($this->getDataTableFingerprint(), $filter->getKey(), $options));
+
+                        ($filter->getFilterCallback())($this->getBuilder(), $options, $operator);
                     }
                 }
             }

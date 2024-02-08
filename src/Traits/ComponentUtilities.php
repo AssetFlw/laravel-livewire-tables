@@ -78,6 +78,8 @@ trait ComponentUtilities
         'after-pagination' => null,
     ];
 
+    protected $cardLayoutStatus = false;
+
     /**
      * Set the custom query string array for this specific table
      *

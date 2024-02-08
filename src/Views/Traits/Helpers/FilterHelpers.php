@@ -60,6 +60,20 @@ trait FilterHelpers
         return null;
     }
 
+    /**
+     * @param  callable  $callback
+     * @return Filter
+     */
+    public function getFilterOperator()
+    {
+        return null;
+    }
+
+    /**
+     * Get the filter options.
+     *
+     * @return array
+     */
     public function filter(callable $callback): Filter
     {
         $this->filterCallback = $callback;

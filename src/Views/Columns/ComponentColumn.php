@@ -12,8 +12,8 @@ use Rappasoft\LaravelLivewireTables\Views\Traits\Helpers\ComponentColumnHelpers;
 
 class ComponentColumn extends Column
 {
-    use ComponentColumnHelpers,
-        ComponentColumnConfiguration;
+    use ComponentColumnConfiguration,
+        ComponentColumnHelpers;
 
     protected string $componentView;
 
@@ -32,7 +32,7 @@ class ComponentColumn extends Column
             throw new DataTableConfigurationException('You can not use a label column with a component column');
         }
 
-        if (false === $this->hasComponentView()) {
+        if ($this->hasComponentView() === false) {
             throw new DataTableConfigurationException('You must specify a component view for a component column');
         }
 

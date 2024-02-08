@@ -4,6 +4,7 @@ namespace Rappasoft\LaravelLivewireTables\Traits\Helpers;
 
 use Illuminate\Support\Arr;
 use Illuminate\Support\Collection;
+use Rappasoft\LaravelLivewireTables\Events\FilterSet;
 use Rappasoft\LaravelLivewireTables\Views\Filter;
 use Rappasoft\LaravelLivewireTables\Views\Filters\MultiSelectDropdownFilter;
 use Rappasoft\LaravelLivewireTables\Views\Filters\MultiSelectFilter;
@@ -118,7 +119,9 @@ trait FilterHelpers
      */
     public function setFilter(string $filterKey, $value)
     {
-        return $this->{$this->getTableName()}['filters'][$filterKey] = $value;
+        $filters = $this->{$this->getTableName()}['filters'][$filterKey] = $value;
+
+        return $filters;
     }
 
     public function selectAllFilterOptions(string $filterKey): void
@@ -195,9 +198,14 @@ trait FilterHelpers
      */
     public function getAppliedFiltersWithValues(): array
     {
-        return array_filter($this->getAppliedFilters(), function ($item, $key) {
-            return ! $this->getFilterByKey($key)->isEmpty($item) && (is_array($item) ? count($item) : $item !== null);
-        }, ARRAY_FILTER_USE_BOTH);
+        return array_filter($this->getAppliedFilters(), function ($item) {
+            $item = (is_array($item) ? (array_key_exists('options', $item) ? $item['options'] : $item) : $item);
+            if (is_array($item)) {
+                unset($item['operator']);
+            }
+
+            return is_array($item) ? count($item) : $item !== null;
+        });
     }
 
     /**
@@ -221,8 +229,8 @@ trait FilterHelpers
         if (! $filter instanceof Filter) {
             $filter = $this->getFilterByKey($filter);
         }
-
         $this->setFilter($filter->getKey(), $filter->getDefaultValue());
+        event(new FilterSet($this->getDataTableFingerprint(), $filter->getKey(), $filter->getDefaultValue()));
     }
 
     public function getFilterLayout(): string

@@ -5,7 +5,7 @@
     $theme = $component->getTheme();
 @endphp
 
-<div x-data="{
+<div class="flex w-full" x-data="{
     @if ($component->isFilterLayoutSlideDown()) filtersOpen: $wire.filterSlideDownDefaultVisible, @endif
     paginationCurrentCount: $wire.entangle('paginationCurrentCount'),
     paginationTotalItemCount: $wire.entangle('paginationTotalItemCount'),
