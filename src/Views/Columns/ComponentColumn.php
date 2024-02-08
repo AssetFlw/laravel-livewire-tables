@@ -21,7 +21,7 @@ class ComponentColumn extends Column
 
     protected $slotCallback;
 
-    public function __construct(string $title, ?string $from = null)
+    public function __construct(string $title, string $from = null)
     {
         parent::__construct($title, $from);
     }

@@ -85,7 +85,7 @@ trait ComponentHelpers
     }
 
     /**
-     * @return array<mixed>
+     * @return  array<mixed>
      */
     public function getTableWrapperAttributes(): array
     {
@@ -93,7 +93,7 @@ trait ComponentHelpers
     }
 
     /**
-     * @return array<mixed>
+     * @return  array<mixed>
      */
     public function getTableAttributes(): array
     {
@@ -101,7 +101,7 @@ trait ComponentHelpers
     }
 
     /**
-     * @return array<mixed>
+     * @return  array<mixed>
      */
     public function getTheadAttributes(): array
     {
@@ -109,7 +109,7 @@ trait ComponentHelpers
     }
 
     /**
-     * @return array<mixed>
+     * @return  array<mixed>
      */
     public function getTbodyAttributes(): array
     {
@@ -117,7 +117,7 @@ trait ComponentHelpers
     }
 
     /**
-     * @return array<mixed>
+     * @return  array<mixed>
      */
     public function getThAttributes(Column $column): array
     {
@@ -125,7 +125,7 @@ trait ComponentHelpers
     }
 
     /**
-     * @return array<mixed>
+     * @return  array<mixed>
      */
     public function getThSortButtonAttributes(Column $column): array
     {
