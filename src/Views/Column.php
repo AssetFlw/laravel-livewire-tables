@@ -78,7 +78,7 @@ class Column
 
     protected ?string $customSlug = null;
 
-    public function __construct(string $title, string $from = null)
+    public function __construct(string $title, ?string $from = null)
     {
         $this->title = trim($title);
 
@@ -101,7 +101,7 @@ class Column
     /**
      * @return static
      */
-    public static function make(string $title, string $from = null): Column
+    public static function make(string $title, ?string $from = null): Column
     {
         return new static($title, $from);
     }
