@@ -45,7 +45,7 @@ abstract class Filter
 
     protected mixed $filterDefaultValue = null;
 
-    public function __construct(string $name, string $key = null)
+    public function __construct(string $name, ?string $key = null)
     {
         $this->name = $name;
 
@@ -60,7 +60,7 @@ abstract class Filter
     /**
      * @return static
      */
-    public static function make(string $name, string $key = null): Filter
+    public static function make(string $name, ?string $key = null): Filter
     {
         return new static($name, $key);
     }
